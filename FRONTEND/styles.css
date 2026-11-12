@@ -51,6 +51,7 @@ h1 {
 
 .hakupalkit input {
     border: 2px solid black;
+    padding: 4px;
 }
 
 .hakupalkit input:focus {
