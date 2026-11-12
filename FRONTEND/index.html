@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poliisitietokone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="../KUVAT/FAVICON.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="vasen">
+        <h1>POLIISITIETOKONE</h1>
+        <div class="hakupalkit">
+            <label for="E-nimi">Hae etunimellä</label>
+            <input type="text" id="E-nimi" name="E-nimi">
+            <label for="S-nimi">Hae sukunimellä</label>
+            <input type="text" id="S-nimi" name="S-nimi">
+            <label for="Hetu">Hae henkilötunnuksella</label>
+            <input type="text" id="Hetu" name="Hetu">
+        </div>
+        <button id="Haku-btn">HAE</button>
+        <p>Voit hakea henkilöitä joko etunimen, sukunimen tai henkilötunnuksen perusteella. 
+        Voit myös käyttää useampaa vaihtoehtoa tarkempaan tulosten suodattamiseen.</p>
+    </div>
+
+    <div class="oikea">
+        <div class="mugshot">
+            <img src="../KUVAT/PLACEHOLDER-MUGSHOT.jpg" alt="PLACEHOLDER">
+            <div class="yla-teksti">
+                <h2>MATTI MEIKÄLÄINEN</h2>
+                <h3>HENKILÖTUNNUS</h3>
+                <p>310223-H349L</p>
+            </div>
+        </div>
+        <div class="viiva1"></div>
+        <div class="keski-teksti">
+            <p>Sukupuoli: M</p>
+            <p>Kansalaisuus: FIN</p>
+        </div>
+        <div class="viiva2"></div>
+        <div class="ala-teksti">
+            <div class="ala-vasen">
+                <h4>HENKILÖTIEDOT</h4>
+                <div class="etunimet">
+                <label for="etunimi">ETUNIMET</label>
+                <p name="etunimi">Matti Juhani</p>
+                </div>
+                <div class="dob">
+                <label for="dob">SYNTYMÄAIKA</label>
+                <p name="dob">29.5.1994</p>
+                </div>
+            </div>
+            <div class="ala-oikea">
+                <div class="sukunimi">
+                <label for="sukunimi">SUKUNIMI</label>
+                <p name="sukunimi">Meikäläinen</p>
+                </div>
+                <div class="pob">
+                <label for="pob">SYNTYMÄPAIKKA</label>
+                <p name="pob">HELSINKI</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
