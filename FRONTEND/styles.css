@@ -25,6 +25,10 @@ body {
 }
 
 .oikea {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* none */
+    flex-direction: column;
     margin: 10px;
     height: 550px;
     width: 40%;
@@ -84,14 +88,8 @@ h1 {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.oikea {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .mugshot {
-    display: flex;
+    display: none; /* flex */
     height: 20%;
     width: 100%;
     margin-bottom: 5%;
@@ -106,7 +104,7 @@ h1 {
 }
 
 .yla-teksti {
-    display: flex;
+    display: none; /* flex */
     flex-direction: column;
     width: 100%;
     gap: 5px;
@@ -131,6 +129,7 @@ h3 {
 }
 
 .viiva1 {
+    display: none; /* block */
     width: 100%;
     background-color: grey;
     height: 1px;
@@ -139,7 +138,7 @@ h3 {
 }
 
 .keski-teksti {
-    display: flex;
+    display: none; /* flex */
     flex-direction: column;
     justify-content: center;
     margin-bottom: 0;
@@ -149,13 +148,14 @@ h3 {
     gap: 10px;
 }
 
-.keski-teksti p {
+.keski-teksti p{
     margin-left: 27%;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 .viiva2 {
+    display: none; /* block */
     width: 100%;
     background-color: grey;
     height: 1px;
@@ -165,7 +165,7 @@ h3 {
 }
 
 .ala-teksti {
-    display: flex;
+    display: none; /* flex */
     height: 55%;
     width: 100%;
 }
@@ -247,4 +247,25 @@ h4 {
 
 .pob label {
     font-size: 13px;
+}
+
+.alku-teksti {
+    margin: 0;
+    font-family: "Roboto Condensed";
+    font-size: x-large;
+}
+
+.lataus {
+    display: none;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
