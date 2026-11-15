@@ -7,10 +7,19 @@ const app = express();
 
 app.use(cors());
 
-app.get('/kansalaiset', (req, res) => {
+app.get('/kansalaiset/hetu', (req, res) => {
     const tietokanta = new sqlite('BACKEND/tietokanta.db');
     const hetu = req.query.hetu;
     const data = tietokanta.prepare('SELECT * FROM kansalaiset WHERE hetu = ?').all(hetu);
+    res.json(data);
+
+});
+
+app.get('/kansalaiset/both', (req, res) => {
+    const tietokanta = new sqlite('BACKEND/tietokanta.db');
+    const etunimi = req.query.etunimi;
+    const sukunimi = req.query.sukunimi;
+    const data = tietokanta.prepare('SELECT * FROM kansalaiset WHERE etunimi = ? AND sukunimi = ?').all(etunimi, sukunimi);
     res.json(data);
 
 });

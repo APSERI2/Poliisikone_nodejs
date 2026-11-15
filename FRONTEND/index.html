@@ -16,11 +16,11 @@
         <h1>POLIISITIETOKONE</h1>
         <div class="hakupalkit">
             <label for="E-nimi">Hae etunimellä</label>
-            <input type="text" id="E-nimi" name="E-nimi">
+            <input type="text" id="etunimi-input" name="E-nimi">
             <label for="S-nimi">Hae sukunimellä</label>
-            <input type="text" id="S-nimi" name="S-nimi">
+            <input type="text" id="sukunimi-input" name="S-nimi">
             <label for="Hetu">Hae henkilötunnuksella</label>
-            <input type="text" id="Hetu" name="Hetu">
+            <input type="text" id="hetu-input" name="Hetu">
         </div>
         <button id="Haku-btn">HAE</button>
         <p>Voit hakea henkilöitä joko etunimen, sukunimen tai henkilötunnuksen perusteella. 
@@ -28,14 +28,30 @@
     </div>
 
     <div class="oikea">
+        <div class="tuloskortti" id="tuloskortti">
+            <div class="kortti-mugshot">
+                <img src="../KUVAT/PLACEHOLDER-MUGSHOT.jpg" alt="PLACEHOLDER">
+            </div>
+            <div class="kortti-yla">
+                <p class="kortti-kokonimi">MATTI MEIKÄLÄINEN</p>
+                <p class="kortti-hetu">294080-XFJ</p>
+            </div>
+            <div class="kortti-oikea">
+                <label for="k-syntymaaika">SYNTYMÄAIKA</label>
+                <p class="kortti-syntymaaika" name="k-syntymaika">25.2.1980</p>
+
+                <label for="k-syntymapaikka">SYNTYMÄPAIKKA</label>
+                <p class="kortti-syntymapaikka" name="k-syntymapaikka">Helsinki</p>
+            </div>
+        </div>
         <div class="lataus" id="lataus"></div>
         <p class="alku-teksti" id="alku-teksti">Aloita haku saadaksesi tuloksia</p>
         <div class="mugshot" id="mugshot">
             <img src="../KUVAT/PLACEHOLDER-MUGSHOT.jpg" alt="PLACEHOLDER">
             <div class="yla-teksti" id="yla-teksti">
-                <h2 id="K-nimi">MATTI MEIKÄLÄINEN</h2>
+                <h2 id="koko-nimi">MATTI MEIKÄLÄINEN</h2>
                 <h3>HENKILÖTUNNUS</h3>
-                <p id="Hetu-display">310223-H349L</p>
+                <p id="hetu">310223-H349L</p>
             </div>
         </div>
         <div class="viiva1" id="viiva1"></div>
