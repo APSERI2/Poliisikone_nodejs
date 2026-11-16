@@ -1,7 +1,7 @@
 
 
 const elementit = ['hetu', 'etunimi', 'sukunimi', 'koko-nimi', 'pob', 'dob', 'sukupuoli', 'kansalaisuus'];
-const luokat = ['lataus', 'yla-teksti', 'mugshot', 'viiva1', 'viiva2', 'keski-teksti', 'ala-teksti', 'alku-teksti'];
+const luokat = ['lataus', 'yla-teksti', 'mugshot', 'viiva1', 'viiva2', 'keski-teksti', 'ala-teksti', 'alku-teksti', 'oikea'];
 const inputit = ['etunimi-input', 'sukunimi-input', 'hetu-input'];
 
 // Hakee tietoja hetun avulla
@@ -34,7 +34,7 @@ async function searchByBoth(etunimi, sukunimi) {
             break;
         
         case tietokanta.length > 1:
-            console.log('toimii!')
+            displayMatches(tietokanta);
     };
 };
 
@@ -48,6 +48,9 @@ function noResult() {
         case 'alku-teksti':
             document.getElementById(x).style.display = "block";
             document.getElementById(x).textContent = "Henkilöä ei löytynyt!";
+            break;
+
+        case 'oikea':
             break;
 
         default:
@@ -97,6 +100,36 @@ function resultFound(tietokanta) {
             document.getElementById(x).textContent = tietokanta[0][x];
         };
     };
+};
+
+function displayMatches(tietokanta) {
+    for(let i of luokat) {
+        switch(i) {
+            case 'lataus':
+            case 'alku-teksti':
+                document.getElementById(i).style.display = 'none';
+                break;
+
+            case 'oikea':
+                document.getElementById(i).style.justifyContent = 'flex-start';
+                
+        }
+    }
+    for(let i of tietokanta) {
+        const divi = document.createElement('div');
+        document.getElementById('oikea').appendChild(divi);
+        divi.id = "id";
+        divi.setAttribute('class', 'tuloskortti');
+        document.getElementById('id').style.display = 'flex';
+        console.log('testi');
+
+        const divi2 = document.createElement('div');
+        document.getElementById('oikea').appendChild(divi2);
+        divi2.id = "id2";
+        divi2.setAttribute('class', 'tuloskortti');
+        document.getElementById('id2').style.display = 'flex';
+        console.log('testi');
+    }
 };
 
 // Tietojen hakeminen Sqlite tietokannasta
