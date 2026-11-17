@@ -1,5 +1,5 @@
 const elementit = ['hetu', 'etunimi', 'sukunimi', 'koko-nimi', 'pob', 'dob', 'sukupuoli', 'kansalaisuus'];
-const luokat = ['lataus', 'yla-teksti', 'mugshot', 'viiva1', 'viiva2', 'keski-teksti', 'ala-teksti', 'alku-teksti', 'oikea'];
+const luokat = ['lataus', 'yla-teksti', 'mugshot', 'viiva1', 'viiva2', 'keski-teksti', 'ala-teksti', 'alku-teksti', 'oikea', 'tuloskortti'];
 const inputit = ['etunimi-input', 'sukunimi-input', 'hetu-input'];
 
 // Hakee tietoja hetun avulla
@@ -51,6 +51,13 @@ function noResult() {
         case 'oikea':
             break;
 
+        case 'tuloskortti':
+            const kortti_elementit = document.querySelectorAll('.tuloskortti');
+            for(let i = 0; i < kortti_elementit.length; i++) {
+                kortti_elementit[i].remove();
+            }
+            break;
+
         default:
             document.getElementById(x).style.display = 'none';
 
@@ -72,6 +79,13 @@ function resultFound(tietokanta) {
             case 'viiva1':
             case 'viiva2':
                 document.getElementById(x).style.display = 'block';
+                break;
+
+            case 'tuloskortti':
+                const kortti_elementit = document.querySelectorAll('.tuloskortti');
+                for(let i = 0; i < kortti_elementit.length; i++) {
+                    kortti_elementit[i].remove();
+                }
                 break;
 
             default:
@@ -108,9 +122,20 @@ function displayMatches(tietokanta) {
                 document.getElementById(i).style.display = 'none';
                 break;
 
+
             case 'oikea':
                 document.getElementById(i).style.justifyContent = 'flex-start';
-                
+                break;
+
+            case 'tuloskortti':
+                const kortti_elementit = document.querySelectorAll('.tuloskortti');
+                for(let i = 0; i < kortti_elementit.length; i++) {
+                    kortti_elementit[i].remove();
+                }
+                break;
+            
+            default:
+                document.getElementById(i).style.display = "none";
         }
     }
     let x = 0;
@@ -162,7 +187,7 @@ function displayMatches(tietokanta) {
         document.getElementById(kokonimi.id).style.marginTop = '10%';
         document.getElementById(kokonimi.id).style.marginBottom = '2%'
         document.getElementById(kokonimi.id).style.minWidth = '100%';
-        document.getElementById(kokonimi.id).textContent = i.etunimi + " " +  i.sukunimi;
+        document.getElementById(kokonimi.id).textContent = i.etunimi.toUpperCase() + " " +  i.sukunimi.toUpperCase();
 
         // Kortti hetu luokka
         const korttihetu = document.createElement('p');
@@ -170,6 +195,48 @@ function displayMatches(tietokanta) {
         korttihetu.setAttribute('class', 'kortti-hetu');
         korttihetu.id = 'korttihetu-id' + x;
         document.getElementById(korttihetu.id).textContent = i.hetu;
+
+        // Kortti oikea luokka
+        const korttioikea = document.createElement('div');
+        document.getElementById(divi.id).appendChild(korttioikea);
+        korttioikea.setAttribute('class', 'kortti-oikea');
+        korttioikea.id = 'korttioikea-id' + x
+        document.getElementById(korttioikea.id).style.minHeight = '100%';
+        document.getElementById(korttioikea.id).style.minWidth = '30%';
+
+        // Kortti oikea tekstit
+        const syntymaaika_label = document.createElement('label');
+        const syntymaaika = document.createElement('p');
+        const syntymapaikka_label = document.createElement('label');
+        const syntymapaikka = document.createElement('p');
+
+        document.getElementById(korttioikea.id).appendChild(syntymaaika_label);
+        document.getElementById(korttioikea.id).appendChild(syntymaaika);
+        document.getElementById(korttioikea.id).appendChild(syntymapaikka_label);
+        document.getElementById(korttioikea.id).appendChild(syntymapaikka);
+        
+        syntymaaika_label.setAttribute('class', 'syntymaaika-label');
+        syntymapaikka_label.setAttribute('class', 'syntymapaikka-label');
+        syntymaaika.setAttribute('class', 'kortti-syntymaaika');
+        syntymapaikka.setAttribute('class', 'kortti-syntymapaikka');
+
+        syntymaaika_label.id = 'syntymaaika_label-id' + x;
+        syntymapaikka_label.id = 'syntymapaikka_label-id' + x;
+        syntymaaika.id = 'syntymaaika-id' + x;
+        syntymapaikka.id = 'syntymapaikka-id' + x;
+
+        document.getElementById(syntymaaika_label.id).textContent = 'SYNTYMÄAIKA';
+        document.getElementById(syntymapaikka_label.id).textContent = 'SYNTYMÄPAIKKA';
+
+        document.getElementById(syntymaaika_label.id).style.marginTop = '12%';
+        document.getElementById(syntymapaikka_label.id).style.marginTop = '12%';
+
+        document.getElementById(syntymaaika_label.id).style.fontSize = '13px';
+        document.getElementById(syntymapaikka_label.id).style.fontSize = '13px';
+
+        document.getElementById(syntymapaikka.id).textContent = i.pob;
+        document.getElementById(syntymaaika.id).textContent = i.dob;
+        
 
 
 

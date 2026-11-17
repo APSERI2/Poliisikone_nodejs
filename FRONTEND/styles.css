@@ -333,7 +333,8 @@ h4 {
     font-size: 20px;
 }
 
-.kortti-oikea label {
+.syntymaika-label
+.syntymapaikka-label {
     margin-top: 12%;
     font-size: 13px;
 }
