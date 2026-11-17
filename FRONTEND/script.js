@@ -1,5 +1,3 @@
-
-
 const elementit = ['hetu', 'etunimi', 'sukunimi', 'koko-nimi', 'pob', 'dob', 'sukupuoli', 'kansalaisuus'];
 const luokat = ['lataus', 'yla-teksti', 'mugshot', 'viiva1', 'viiva2', 'keski-teksti', 'ala-teksti', 'alku-teksti', 'oikea'];
 const inputit = ['etunimi-input', 'sukunimi-input', 'hetu-input'];
@@ -115,20 +113,67 @@ function displayMatches(tietokanta) {
                 
         }
     }
+    let x = 0;
     for(let i of tietokanta) {
+        x++
+
+        // Korttidiv juttu
+
         const divi = document.createElement('div');
         document.getElementById('oikea').appendChild(divi);
-        divi.id = "id";
+        divi.id = "id" + x;
         divi.setAttribute('class', 'tuloskortti');
-        document.getElementById('id').style.display = 'flex';
-        console.log('testi');
+        document.getElementById(divi.id).style.display = 'flex';
+        document.getElementById(divi.id).style.minHeight = "25%";
 
-        const divi2 = document.createElement('div');
-        document.getElementById('oikea').appendChild(divi2);
-        divi2.id = "id2";
-        divi2.setAttribute('class', 'tuloskortti');
-        document.getElementById('id2').style.display = 'flex';
-        console.log('testi');
+        // Mugshot luokka
+
+        const mugshotdiv = document.createElement('div');
+        document.getElementById(divi.id).appendChild(mugshotdiv);
+        mugshotdiv.id = "mugshot-id" + x;
+        mugshotdiv.setAttribute('class', 'kortti-mugshot');
+        document.getElementById(mugshotdiv.id).style.minHeight = '80%';
+        document.getElementById(mugshotdiv.id).style.marginLeft = '2%';
+
+        const mugshot = document.createElement('img');
+        document.getElementById(mugshotdiv.id).appendChild(mugshot);
+        mugshot.src = '../KUVAT/PLACEHOLDER-MUGSHOT.jpg';
+        mugshot.setAttribute('class', 'kortti-img');
+        mugshot.id = 'mugshot-img-id' + x;
+        document.getElementById(mugshot.id).style.minHeight = '100%';
+        document.getElementById(mugshot.id).style.width = '100%';
+
+        // Kortti-yla luokka
+
+        const korttiyla = document.createElement('div');
+        document.getElementById(divi.id).appendChild(korttiyla);
+        korttiyla.setAttribute('class', 'kortti-yla');
+        korttiyla.id = 'kortti-yla-id' + x;
+        document.getElementById(korttiyla.id).style.minHeight = '100%';
+        document.getElementById(korttiyla.id).style.marginLeft = '3%';
+
+        // Kortti kokonimi luokka
+
+        const kokonimi = document.createElement('p');
+        document.getElementById(korttiyla.id).appendChild(kokonimi);
+        kokonimi.setAttribute('class', 'kortti-kokonimi');
+        kokonimi.id = 'kokonimi-id' + x;
+        document.getElementById(kokonimi.id).style.fontSize = '20px';
+        document.getElementById(kokonimi.id).style.marginTop = '10%';
+        document.getElementById(kokonimi.id).style.marginBottom = '2%'
+        document.getElementById(kokonimi.id).style.minWidth = '100%';
+        document.getElementById(kokonimi.id).textContent = i.etunimi + " " +  i.sukunimi;
+
+        // Kortti hetu luokka
+        const korttihetu = document.createElement('p');
+        document.getElementById(korttiyla.id).appendChild(korttihetu);
+        korttihetu.setAttribute('class', 'kortti-hetu');
+        korttihetu.id = 'korttihetu-id' + x;
+        document.getElementById(korttihetu.id).textContent = i.hetu;
+
+
+
+        
     }
 };
 
