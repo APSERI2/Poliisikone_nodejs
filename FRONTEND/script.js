@@ -144,12 +144,13 @@ function displayMatches(tietokanta) {
 
         // Korttidiv juttu
 
-        const divi = document.createElement('div');
+        const divi = document.createElement('button');
         document.getElementById('oikea').appendChild(divi);
-        divi.id = "id" + x;
+        divi.id = i.hetu;
         divi.setAttribute('class', 'tuloskortti');
         document.getElementById(divi.id).style.display = 'flex';
         document.getElementById(divi.id).style.minHeight = "25%";
+        document.getElementById(divi.id).style.cursor = 'pointer';
 
         // Mugshot luokka
 
@@ -236,6 +237,18 @@ function displayMatches(tietokanta) {
 
         document.getElementById(syntymapaikka.id).textContent = i.pob;
         document.getElementById(syntymaaika.id).textContent = i.dob;
+
+        document.getElementById(divi.id).addEventListener('click', () => {
+            searchByHetu(divi.id);
+        });
+
+        document.getElementById(divi.id).addEventListener('mouseover', () => {
+            document.getElementById(divi.id).style.backgroundColor = 'grey';
+        });
+
+                document.getElementById(divi.id).addEventListener('mouseleave', () => {
+            document.getElementById(divi.id).style.backgroundColor = 'white';
+        });
         
 
 
