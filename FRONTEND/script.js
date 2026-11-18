@@ -36,6 +36,40 @@ async function searchByBoth(etunimi, sukunimi) {
     };
 };
 
+async function searchByEtunimi(etunimi) {
+    const data = await fetch(`http://localhost:3000/kansalaiset/etunimi?etunimi=${etunimi}`);
+    const tietokanta = await data.json();
+    switch(true) {
+        case tietokanta.length === 0:
+            noResult();
+            return;
+
+        case tietokanta.length === 1:
+            resultFound(tietokanta);
+            break;
+        
+        case tietokanta.length > 1:
+            displayMatches(tietokanta);
+    };
+};
+
+async function searchBySukunimi(sukunimi) {
+    const data = await fetch(`http://localhost:3000/kansalaiset/sukunimi?sukunimi=${sukunimi}`);
+    const tietokanta = await data.json();
+    switch(true) {
+        case tietokanta.length === 0:
+            noResult();
+            return;
+
+        case tietokanta.length === 1:
+            resultFound(tietokanta);
+            break;
+        
+        case tietokanta.length > 1:
+            displayMatches(tietokanta);
+    };
+};
+
 
 // Tämä funktio pyörii vain, jos tuloksia ei löydy annetuilla tiedoilla
 // Käytännössä funktio vain muokkaa frontend elementtejä
@@ -48,14 +82,15 @@ function noResult() {
             document.getElementById(x).textContent = "Henkilöä ei löytynyt!";
             break;
 
-        case 'oikea':
-            break;
-
         case 'tuloskortti':
             const kortti_elementit = document.querySelectorAll('.tuloskortti');
             for(let i = 0; i < kortti_elementit.length; i++) {
                 kortti_elementit[i].remove();
             }
+            break;
+
+        case 'oikea':
+            document.getElementById(x).style.justifyContent = 'center';
             break;
 
         default:
@@ -80,6 +115,9 @@ function resultFound(tietokanta) {
             case 'viiva2':
                 document.getElementById(x).style.display = 'block';
                 break;
+
+            case 'oikea':
+                document.getElementById(x).style.justifyContent = 'center';
 
             case 'tuloskortti':
                 const kortti_elementit = document.querySelectorAll('.tuloskortti');
@@ -274,10 +312,10 @@ async function getData() {
         searchByBoth(etunimi, sukunimi)
     }
     else if (etunimi) {
-        // Run searchByEtunimi
+        searchByEtunimi(etunimi)
     }
     else if (sukunimi) {
-        // Run searchBySukunimi
+        searchBySukunimi(sukunimi);
     }
 
     else {
@@ -290,6 +328,18 @@ async function getData() {
 
 document.getElementById('Haku-btn').addEventListener('click', getData);
 document.getElementById('hetu-input').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        getData();
+    }
+});
+
+document.getElementById('etunimi-input').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        getData();
+    }
+});
+
+document.getElementById('sukunimi-input').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         getData();
     }

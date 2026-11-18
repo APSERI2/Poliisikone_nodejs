@@ -24,6 +24,22 @@ app.get('/kansalaiset/both', (req, res) => {
 
 });
 
+app.get('/kansalaiset/etunimi', (req, res) => {
+    const tietokanta = new sqlite('BACKEND/tietokanta.db');
+    const etunimi = req.query.etunimi;
+    const data = tietokanta.prepare('SELECT * FROM kansalaiset WHERE etunimi = ?').all(etunimi);
+    res.json(data);
+
+});
+
+app.get('/kansalaiset/sukunimi', (req, res) => {
+    const tietokanta = new sqlite('BACKEND/tietokanta.db');
+    const sukunimi = req.query.sukunimi;
+    const data = tietokanta.prepare('SELECT * FROM kansalaiset WHERE sukunimi = ?').all(sukunimi);
+    res.json(data);
+
+});
+
 app.listen(3000, () => {
     console.log('Serveri pystyssä!');
 });
